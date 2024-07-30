@@ -326,7 +326,37 @@ async def wiki(ctx, *, search):
 
 #-----FIN WIKIPEDIA API---------
 
+#---INICIO COMANDO NOTICIAS (Devuelve las 5 mejores noticias del dia en Argentina)
 
+API_KEY = '#Clave API de NewsAPI'
+BASE_URL = 'https://newsapi.org/v2/top-headlines'
+
+def obtener_noticias(pais='ar', categoria=None):
+    parametros = {
+        'apiKey': API_KEY,
+        'country': pais,
+    }
+    if categoria:
+        parametros['category'] = categoria
+
+    respuesta = requests.get(BASE_URL, params=parametros)
+
+    if respuesta.status_code == 200:
+        datos = respuesta.json()
+        return datos['articles']
+    else:
+        return None
+
+@bot.command()
+async def noticias(ctx, categoria=None):
+    noticias = obtener_noticias(pais='ar', categoria=categoria)
+    if noticias:
+        for noticia in noticias[:5]:  # Limitar a las primeras 5 noticias
+            await ctx.send(noticia['title'])
+    else:
+        await ctx.send('No se pudieron obtener noticias.')
+        
+#-----Fin comando noticias)
 
 
 bot.run("TOKEN DEL BOT")
