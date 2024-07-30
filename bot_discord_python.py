@@ -104,7 +104,7 @@ async def rol(ctx):
 
 #INICIO_COMANDO_INFORMACION
 
-comandos_bot = ["!jungla", "!mid", "!soporte", "!top", "!adc", "!rol", "!feo", "!clima", "!rifa", "!quejugar", "!chiste", "!equipos", "!wiki [lo que quieras buscar]"]
+comandos_bot = ["!jungla", "!mid", "!soporte", "!top", "!adc", "!rol", "!feo", "!clima", "!rifa", "!quejugar", "!chiste", "!equipos", "!wiki [lo que quieras buscar]" , "!Noticias"]
 
 
 @bot.command()
@@ -278,17 +278,13 @@ equiposenv =[
 
 
 def equiporandom1():
-    return random.choice(equiposenv)
-
-def equiporandom2():
-    return random.choice(equiposenv)
+    return random.sample(equiposenv, 2)
 
 
 
 @bot.command()
 async def equipos(ctx):
-    equiposrandom = equiporandom1()
-    equiposrandom2 = equiporandom2()
+    equiposrandom,equiposrandom2 = equiporandom1()
     await ctx.send(f'El equipo 1 es {equiposrandom} y El equipo 2 es {equiposrandom2}')
 
 
