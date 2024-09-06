@@ -13,21 +13,38 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 
 #----------INICIO CLIMA----------
 
-OWM_API_KEY = "API KEY"
+OWM_API_KEY = "22307f5b30073b825bd4e4298ef13655"
 
 @bot.command()
-async def clima(ctx):
-    url = f"http://api.openweathermap.org/data/2.5/weather?q=Berazategui,AR&appid={OWM_API_KEY}&units=metric&lang=es"
+async def clima(ctx, *, lugar: str):
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={lugar},AR&appid={OWM_API_KEY}&units=metric&lang=es"
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
         temperatura = data['main']['temp']
         descripcion = data['weather'][0]['description']
-        await ctx.send(f"El clima en Berazategui es {descripcion} con una temperatura de {temperatura}°C.")
+        await ctx.send(f"El clima en {lugar} es {descripcion} con una temperatura de {temperatura}°C.")
     else:
-        await ctx.send(f"No se pudo obtener el clima para Berazategui. Código de estado: {response.status_code}")
-
+        await ctx.send(f"No se pudo obtener el clima para {lugar}.")
 #----------FIN CLIMA----------
+
+#---------INICIO MENSAJE AUTOMATICO DE COMANDOS------
+CHANNEL_ID = 632400399210512395
+INTERVAL = 21600
+
+@bot.event
+async def on_ready():
+    print(f'Logged in as {bot.user}')
+    send_message.start()
+
+@tasks.loop(seconds=INTERVAL)
+async def send_message():
+    channel = bot.get_channel(CHANNEL_ID)
+    if channel:
+        await channel.send(comandos_bot)
+
+#--------FIN MSJ AUTOMATICO DE COMANDOS--------
+
 
 #----------INICIO RIFA----------
 
