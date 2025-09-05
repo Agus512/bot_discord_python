@@ -1,4 +1,6 @@
-Este es un bot de Discord en Python utilizando discord.py que ofrece diversas funcionalidades: consulta el clima del lugar que desees a través de la API de OpenWeatherMap,
-realiza sorteos con premios aleatorios, da la bienvenida y se despide de los miembros del servidor, selecciona roles de League of Legends al azar, envía chistes divertidos,
-elige equipos aleatorios para jugar al FIFA, y proporciona resúmenes de Wikipedia utilizando la API de Wikipedia en español. 
-Ideal para añadir interactividad y entretenimiento a tu servidor de Discord.
+Este es un bot de Discord desarrollado en Python utilizando discord.py que ofrece diversas funcionalidades y cuenta con integraciones de diferentes APIs.
+Una de sus caracteristicas agregadas recientemente es la integración con OpenAI que te permite charlar con el bot y hacerle consultas como si estuvieras dialogando con CHATGPT.
+Entre otras integraciones cuenta con la API de OpenWeatherMap la cual nos da la posibilidad de consultar el clima del lugar que desees en tiempo real y WikipediaAPI la cual nos permite buscar/consultar algun tema en especifico y nos devuelve el resumen en un limite determinado de caracteres en español. 
+También funciones propias como realizar sorteos con premios aleatorios, dar la bienvenida y despedida de miembros del servidor,
+seleccionar roles para League of Legends al azar, enviar chistes divertidos, elegir equipos aleatorios para jugar FIFA, entre otros.
+
